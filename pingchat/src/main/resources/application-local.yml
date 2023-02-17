@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: admin
+    url: jdbc:postgresql://localhost:5432/pingchat
+    username: postgres
+    hikari:
+      validation-timeout: '3000'
+      connection-timeout: '30000'
+      data-source-properties:
+        maintainTimeStats: 'false'
+        useServerPrepStmts: 'true'
+        cacheResultSetMetadata: 'true'
+        cacheServerConfiguration: 'true'
+        cachePrepStmts: 'true'
+        rewriteBatchedStatements: 'true'
+        prepStmtCacheSqlLimit: '2048'
+        elideSetAutoCommits: 'true'
+        useLocalSessionState: 'true'
+        prepStmtCacheSize: '250'
+      initialization-fail-timeout: '2000'
+      idle-timeout: '600000'
+      maximum-pool-size: '40'
+      isolate-internal-queries: 'true'
+      max-lifetime: '1800000'
+      connection-test-query: SELECT 1
+      minimum-idle: '8'
+  jpa:
+     properties:
+       hibernate:
+         default_schema: ping
