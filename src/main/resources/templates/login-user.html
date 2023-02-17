@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Beautiful Form Page</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+
+		.container {
+			width: 500px;
+			margin: 0 auto;
+			background-color: white;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+			text-align: center;
+		}
+
+		h1 {
+			font-size: 36px;
+			margin-top: 0;
+			margin-bottom: 20px;
+			color: #333;
+		}
+
+		input[type="text"], input[type="email"], input[type="password"] {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			box-sizing: border-box;
+			border: none;
+			border-radius: 4px;
+			background-color: #f2f2f2;
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #45a049;
+		}
+
+		.error {
+			color: red;
+			font-size: 14px;
+			margin-top: 10px;
+			margin-bottom: 0;
+			text-align: left;
+		}
+
+		.success {
+			color: green;
+			font-size: 14px;
+			margin-top: 10px;
+			margin-bottom: 0;
+			text-align: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Criar Novo Chat</h1>
+		<form id="myForm">
+			<label for="name">Nome</label>
+			<input type="text" id="name" name="name" required>
+
+			<label for="chatID">ChatID</label>
+			<input type="text" id="chatID" name="chatID" required>
+
+			<label for="password">Password</label>
+			<input type="password" id="password" name="password" required>
+
+			<button type="submit" onclick="submitForm()">Submit</button>
+		</form>
+		<p id="formMessage"></p>
+	</div>
+
+	<script>
+		 function submitForm() {
+        // Get the form data
+        const name = document.getElementById("name").value;
+        const chatID = document.getElementById("chatID").value;
+        const password = document.getElementById("password").value;
+
+        // Create a new XMLHttpRequest object
+        const xhr = new XMLHttpRequest();
+
+        // Set the HTTP method and URL
+        xhr.open("POST", "http://localhost:8080/pingchat/create", true);
+
+        // Set the request headers
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        // Define the callback function
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            console.log(response);
+          }
+        };
+
+        // Create the request body
+        const body = {
+          name: name,
+          email: email
+        };
+
+        // Convert the body to a JSON string
+        const jsonBody = JSON.stringify(body);
+
+        // Send the request
+        xhr.send(jsonBody);
+      }
+	</script>
+</body>
+</html>

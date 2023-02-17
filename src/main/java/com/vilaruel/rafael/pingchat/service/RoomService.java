@@ -82,12 +82,9 @@ public class RoomService {
 		PingRoom room = this.findRoom(roomInfo.getChatId());
 		Long hostId = null;
 		
-		//checking if password matches
-		try {			
-			roomUtils.validateLogin(room, roomInfo);
-		} catch (Exception e) {			
-			return "Não foi possivel entrar nessa sala. Tente criar outra!";
-		}
+		//checking if password matches		 			
+	    if (roomUtils.validateLogin(room, roomInfo));
+	    else return "Não foi possível entrar nessa sala.";
 		
 		//If the user is new, we're going to create one
 		if (user != null) hostId = user.getUserId();		
